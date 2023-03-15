@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta nmae="author" content="choyeonseung" />
+    <title>퍼블리싱 현황판 | FT/NFT 발급 디앱(DApp)</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700&display=swap" rel="stylesheet" />
+    <style>
+    /* 공통 */
+    *,
+    *:before,
+    *:after {box-sizing:border-box} 
+    html {font-size:62.5%} 
+    body {margin:0;padding:0;font-family:'Noto Sans KR', 'Malgun Gothic', sans-serif;font-size:1.4rem;line-height:1.29;letter-spacing:-.5px;color:#222;background-color:#f7f7f7} 
+    ul,
+    ol {margin:0;padding:0;list-style-type:none} 
+    .header {display:flex;align-items:center;position:fixed;top:0;left:0;right:0;width:100%;height:7rem;padding:0 5rem;background-color:#fff;box-shadow:0 0 .5rem 0 rgba(0, 0, 0, .15);z-index:1} 
+    .content {padding:10rem 5rem 15rem}
+    .project_name {font-size:2rem;font-weight:500;line-height:1.2;letter-spacing:-1px;color:#222} 
+    .document_name {position:relative;margin-left:1rem;padding-left:3rem;color:#767676} 
+    .document_name:before {content:'';position:absolute;top:1.1rem;left:0;width:2rem;height:1px;background-color:#222} 
+    .project_index {position:absolute;top:50%;right:45.5rem;color:#222;text-decoration:none;transform:translateY(-50%)}
+    .project_index:hover {text-decoration:underline}
+    .status_bar {position:absolute;top:2.5rem;right:5rem;z-index:1} 
+    .status_bar strong {display:inline-block} 
+    .status_bar strong:before {content:'';display:inline-block;width:.8rem;height:.8rem;margin-right:.8rem;border-radius:100%} 
+    .status_bar strong+strong {margin-left:1.1rem} 
+    .status_bar .total,
+    .status_bar .doing,
+    .status_bar .check,
+    .status_bar .done {width:5.5rem} 
+    .status_bar .status {width:10rem} 
+    .status_bar .total:before {background-color:#d0d7e4} 
+    .status_bar .doing:before {background-color:#145ecf} 
+    .status_bar .check:before {background-color:#f8c657} 
+    .status_bar .done:before {background-color:#329f43} 
+    .status_bar .status:before {display:none} 
+    .section:after {content:'';display:block;clear:both} 
+    .section+.section {margin-top:10rem} 
+    .heading {position:relative;padding:2rem 2rem 2rem 1.2rem;font-size:2.4rem;font-weight:400;line-height:1.2;color:#282634} 
+    .heading:before {content:'';position:absolute;top:2.6rem;left:0;width:.3rem;height:1.7rem;background-color:#009591} 
+    .strong {font-size:2.5rem;font-weight:500} 
+    .table .title {display:table;table-layout:fixed;width:100%;margin-bottom:2rem;border-bottom:1px solid #c4c4d9} 
+    .table .title div {display:table-cell;padding:2rem 1.5rem;font-size:1.1rem;font-weight:700;color:#999;vertical-align:middle} 
+    .table .title div:nth-child(1) {width:16rem;text-align:center} 
+    .table .title div:nth-child(2) {} 
+    .table .title div:nth-child(3) {width:11rem;text-align:center} 
+    .table .title div:nth-child(4) {width:11rem;text-align:center} 
+    .table .title div:nth-child(5) {width:11rem;text-align:center} 
+    .table .title div:nth-child(6) {} 
+    .table a {display:table;table-layout:fixed;width:100%;border-bottom:1px solid #dedeea;text-decoration:none;transition:background-color .2s ease-in-out, box-shadow .2s ease-in-out, transform .2s ease-in-out} 
+    .table a:focus,
+    .table a:hover {border-radius:.5rem;background-color:#fff;box-shadow:0 0 .5rem 0 rgba(71, 100, 171, .15), 0 .3rem 1.5rem 0 rgba(71, 100, 171, .1);transform:translateY(-.3rem)} 
+    .table a div {display:table-cell;padding:1rem;font-size:1.3rem;color:#333;vertical-align:middle} 
+    .table a div:nth-child(1) {width:16rem;text-align:left} 
+    .table a div:nth-child(2) {} 
+    .table a div:nth-child(3) {width:11rem;text-align:center} 
+    .table a div:nth-child(4) {width:11rem;text-align:center} 
+    .table a div:nth-child(5) {width:11rem;text-align:center} 
+    .table a div:nth-child(6) {} 
+    .hr {margin:3rem 0;border:0} 
+    i {display:inline-block;color:#767676;font-style:normal;font-size:1.3rem;text-align:center} 
+    i:before {content:"작업전"} 
+    i:after {content:"";display:block;width:4.9rem;margin:.3rem auto 0;height:.5rem;border-radius:.25rem;background-image:linear-gradient(90deg, #d0d7e4 0, #d0d7e4 1.5rem, transparent 1.5rem, transparent 1.7rem, #d0d7e4 1.7rem, #d0d7e4 3.2rem, transparent 3.2rem, transparent 3.4rem, #d0d7e4 3.4rem, #d0d7e4 4.9rem, transparent 4.9rem)} 
+    [progress="작업중"]:before {content:attr(progress)} 
+    [progress="작업중"]:after {background-image:linear-gradient(90deg, #145ecf 0, #145ecf 1.5rem, transparent 1.5rem, transparent 1.7rem, #d0d7e4 1.7rem, #d0d7e4 3.2rem, transparent 3.2rem, transparent 3.4rem, #d0d7e4 3.4rem, #d0d7e4 4.9rem, transparent 4.9rem)} 
+    [progress="검수중"]:before {content:attr(progress)} 
+    [progress="검수중"]:after {background-image:linear-gradient(90deg, #f8c657 0, #f8c657 1.5rem, transparent 1.5rem, transparent 1.7rem, #f8c657 1.7rem, #f8c657 3.2rem, transparent 3.2rem, transparent 3.4rem, #d0d7e4 3.4rem, #d0d7e4 4.9rem, transparent 4.9rem)} 
+    [progress="완료"]:before {content:attr(progress)} 
+    [progress="완료"]:after {background-image:linear-gradient(90deg, #329f43 0, #329f43 1.5rem, transparent 1.5rem, transparent 1.7rem, #329f43 1.7rem, #329f43 3.2rem, transparent 3.2rem, transparent 3.4rem, #329f43 3.4rem, #329f43 4.9rem, transparent 4.9rem)} 
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1 class="project_name">FT/NFT 발급 디앱(DApp)</h1>
+        <div class="document_name">퍼블리싱 현황판</div>
+        <div id="section" class="status_bar">
+            <strong class="total"></strong>
+            <strong class="doing"></strong>
+            <strong class="check"></strong>
+            <strong class="done"></strong>
+            <strong class="status"></strong>
+        </div>
+    </header>
+    <div class="content">
+        <section id="sectionList" class="section">
+            <h2 class="heading">FT/NFT 발급 디앱(DApp)</h2>
+            <div class="table">
+                <div class="title">
+                    <div>1DEPTH</div>
+                    <div>2DEPTH</div>
+                    <div>PAGE ID</div>
+                    <div>AUTHOR</div>
+                    <div>PROGRESS</div>
+                    <div>NOTE</div>
+                </div>
+                <a href="html/login01.html" target="_blank" class="tr">
+                    <div>로그인</div>
+                    <div>-</div>
+                    <div>login01</div>
+                    <div>조연승</div>
+                    <div><i option="작업중|검수중|완료" progress=""></i></div>
+                    <div></div>
+                </a>
+                <a href="html/login02.html" target="_blank" class="tr">
+                    <div>로그인_회원가입</div>
+                    <div>-</div>
+                    <div>login02</div>
+                    <div>조연승</div>
+                    <div><i option="작업중|검수중|완료" progress=""></i></div>
+                    <div></div>
+                </a>
+            </div>
+        </section>
+    </div>
+</body>
+<script>
+$(function () {
+    var Section = $('#section');
+        SectionList = $('#sectionList'),
+        Total = SectionList.find('.tr').length, //작업전
+        Doing = SectionList.find('[progress="작업중"]').length, //작업중
+        Check = SectionList.find('[progress="검수중"]').length, //검수중
+        Done = SectionList.find('[progress="완료"]').length, //완료
+        Progress = Math.round(Done / Total * 100); //진행률
+
+    $('#section .total').text(Total);
+    $('#section .doing').text(Doing);
+    $('#section .check').text(Check);
+    $('#section .done').text(Done);
+    $('#section .status').text('진행률 ' + Progress + '%');
+});
+</script>
+</html>
